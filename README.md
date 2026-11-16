@@ -12,7 +12,7 @@ by adding `paubox` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:paubox, "~> 1.1"}
+    {:paubox, "~> 1.2"}
   ]
 end
 ```

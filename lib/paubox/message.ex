@@ -1,25 +1,32 @@
 defmodule Paubox.Message do
-  use TypedStruct
+  @enforce_keys [:subject, :from]
+  defstruct recipients: nil,
+            bcc: nil,
+            cc: nil,
+            subject: nil,
+            from: nil,
+            reply_to: nil,
+            allow_non_tls: false,
+            force_secure_notification: false,
+            text_content: nil,
+            html_content: nil,
+            attachments: nil,
+            # This is to support the List-Unsubscribe header
+            # https://docs.paubox.com/docs/paubox_email_api/messages/#list-unsubscribe
+            unsubscribe: nil
 
-  typedstruct do
-    field(:recipients, [String.t()])
-    field(:bcc, [String.t()])
-    field(:cc, [String.t()])
-
-    field(:subject, String.t(), enforce: true)
-    field(:from, String.t(), enforce: true)
-    field(:reply_to, String.t())
-
-    field(:allow_non_tls, :boolean, default: false)
-    field(:force_secure_notification, :boolean, default: false)
-
-    field(:text_content, String.t())
-    field(:html_content, String.t())
-
-    field(:attachments, [Paubox.Attachment.t()])
-
-    # This is to support the List-Unsubscribe header
-    # https://docs.paubox.com/docs/paubox_email_api/messages/#list-unsubscribe
-    field(:unsubscribe, String.t())
-  end
+  @type t :: %__MODULE__{
+          recipients: [String.t()] | nil,
+          bcc: [String.t()] | nil,
+          cc: [String.t()] | nil,
+          subject: String.t(),
+          from: String.t(),
+          reply_to: String.t() | nil,
+          allow_non_tls: boolean(),
+          force_secure_notification: boolean(),
+          text_content: String.t() | nil,
+          html_content: String.t() | nil,
+          attachments: [Paubox.Attachment.t()] | nil,
+          unsubscribe: String.t() | nil
+        }
 end

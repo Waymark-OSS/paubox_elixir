@@ -1,15 +1,15 @@
 defmodule Paubox.Attachment do
-  use TypedStruct
+  @enforce_keys [:file_name, :content_type, :content]
+  defstruct [:file_name, :content_type, :content]
 
-  typedstruct do
-    @typedoc """
-    A Paubox email attachment. Additional info can be found at https://docs.paubox.com/docs/paubox_email_api/messages
-    """
-
-    field(:file_name, String.t(), enforce: true)
-    field(:content_type, String.t(), enforce: true)
-    field(:content, String.t(), enforce: true)
-  end
+  @typedoc """
+  A Paubox email attachment. Additional info can be found at https://docs.paubox.com/docs/paubox_email_api/messages
+  """
+  @type t :: %__MODULE__{
+          file_name: String.t(),
+          content_type: String.t(),
+          content: String.t()
+        }
 
   @doc """
   This will create a new Paubox.Attachment struct from a file. It will read the
