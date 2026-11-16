@@ -2,7 +2,7 @@ defmodule Paubox.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/waymark-care/paubox_elixir"
-  @version "1.1.0"
+  @version "1.2.0"
 
   def project do
     [
@@ -44,7 +44,6 @@ defmodule Paubox.MixProject do
       {:mock, "~> 0.3", only: :test},
       {:plug, "~> 1.16", only: :test},
       {:excoveralls, "~> 0.18.3", only: :test},
-      {:typedstruct, ">= 0.5.2"},
       {:jason, ">= 1.0.0"},
       {:req, ">= 0.4.0"},
       {:mail, ">= 0.3.0"}

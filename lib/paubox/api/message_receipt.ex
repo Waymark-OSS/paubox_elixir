@@ -3,12 +3,13 @@ defmodule Paubox.API.MessageReceipt do
   This is a wrapper struct around the response from the Paubox API when sending
   messages.
   """
-  use TypedStruct
+  @enforce_keys [:data, :sourceTrackingId]
+  defstruct [:data, :sourceTrackingId]
 
-  typedstruct do
-    field(:data, String.t(), enforce: true)
-    field(:sourceTrackingId, String.t(), enforce: true)
-  end
+  @type t :: %__MODULE__{
+          data: String.t(),
+          sourceTrackingId: String.t()
+        }
 
   @doc """
   Create a new SendResponse struct from a map.
